@@ -6,6 +6,7 @@ on:
 
 jobs:
   validate:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Validate gradle wrapper
     runs-on: ubuntu-latest
     steps:
@@ -13,6 +14,7 @@ jobs:
       - uses: gradle/wrapper-validation-action@v1
 
   build:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Build
     needs: [validate]
     runs-on: ubuntu-latest
@@ -84,6 +86,7 @@ jobs:
         run: ./gradlew build --stacktrace -x test -x checkstyleMain --console=plain
 
   test:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: test
     needs: [validate]
     runs-on: ubuntu-latest
@@ -155,6 +158,7 @@ jobs:
         run: ./gradlew test --stacktrace -x test -x checkstyleMain --console=plain
 
   checkstyleMain:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Checkstyle main
     needs: [validate]
     runs-on: ubuntu-latest
@@ -226,6 +230,7 @@ jobs:
         run: ./gradlew checkstyleMain --console=plain
 
   checkstyleTest:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Checkstyle test
     needs: [validate]
     runs-on: ubuntu-latest
@@ -297,6 +302,7 @@ jobs:
         run: ./gradlew checkstyleTest --console=plain
 
   bump:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Check version numbers
     needs: [validate]
     runs-on: ubuntu-latest
@@ -358,6 +364,7 @@ jobs:
           fi
 
   approve:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Approve
     needs: [build, test, checkstyleMain, checkstyleTest, bump]
     runs-on: ubuntu-latest
