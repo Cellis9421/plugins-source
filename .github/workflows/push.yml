@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     runs-on: ubuntu-latest
     name: Build
 
@@ -77,6 +78,7 @@ jobs:
         run: ./gradlew build --stacktrace -x test -x checkstyleMain --console=plain
 
   test:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     runs-on: ubuntu-latest
     name: Test
 
@@ -147,6 +149,7 @@ jobs:
         run: ./gradlew test --stacktrace -x test -x checkstyleMain --console=plain
 
   checkstyleMain:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     runs-on: ubuntu-latest
     name: Checkstyle main
 
@@ -217,6 +220,7 @@ jobs:
         run: ./gradlew checkstyleMain --console=plain
 
   checkstyleTest:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     runs-on: ubuntu-latest
     name: Checkstyle test
 
@@ -287,6 +291,7 @@ jobs:
         run: ./gradlew checkstyleTest --console=plain
 
   update_draft_release:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Draft release
     runs-on: ubuntu-latest
 
@@ -296,6 +301,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   bootstrap:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     runs-on: ubuntu-latest
     needs: [build, test, checkstyleMain, checkstyleTest]
     name: Bootstrap

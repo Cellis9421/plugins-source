@@ -7,6 +7,7 @@ on:
 
 jobs:
   automerge:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Auto merge
     runs-on: ubuntu-latest
 
@@ -20,6 +21,7 @@ jobs:
           AUTOMERGE: automated-pull-request
 
   cleanup:
+    timeout-minutes: 10 # Owner CI budget, KK-AGENTS#450
     name: Cleanup
     needs: automerge
     runs-on: ubuntu-latest
